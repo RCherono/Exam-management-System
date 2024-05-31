@@ -17,7 +17,8 @@ def teacher_signup_view(request):
             return HttpResponseRedirect(reverse('teacherlogin'))  # using reverse here
         else:
             # Add some error handling here
-            return render(request,'teacher/teachersignup.html',context=mydict, {'error': 'Invalid form data'})
+            mydict['error'] = 'Invalid form data'
+            return render(request,'teacher/teachersignup.html', context=mydict)
     return render(request,'teacher/teachersignup.html',context=mydict)
 
 ...

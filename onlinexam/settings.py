@@ -82,14 +82,15 @@ WSGI_APPLICATION = 'onlinexam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'onlinexam',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # Or your MySQL server IP Address
-        'PORT': '3306',  # Or your MySQL server port
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'onlinexam', 
+        'USER': 'systemctl status dockeruser',  
+        'PASSWORD': 'password',  
+        'HOST': 'localhost',  
+        'PORT': '5432',  
     }
 }
+
 
 
 # Password validation
