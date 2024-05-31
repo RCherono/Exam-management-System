@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+
+<canvas id="studentChart" style="width:100%;max-width:600px"></canvas>
+
+<form id="marksForm">
+  <label for="studentName">Select Student:</label><br>
+  <select id="studentName" name="studentName">
+    <!-- Options will be populated dynamically -->
+  </select><br>
+  <label for="subject">Subject:</label><br>
+  <select id="subject" name="subject">
+    <option value="Math">Math</option>
+    <option value="English">English</option>
+    <option value="Science">Science</option>
+    <option value="History">History</option>
+  </select><br>
+  <label for="marks">Marks:</label><br>
+  <input type="number" id="marks" name="marks"><br>
+  <input type="submit" value="Update Marks">
+</form>
+
+<script>
+var studentNames = ["Alice", "Bob", "Charlie", "David", "Eva", "Ruby"];
+var marksMath = [85, 92, 78, 88, 90];
+var marksEnglish = [78, 85, 89, 84, 76];
+var marksScience = [92, 87, 85, 91, 88];
+var marksHistory = [74, 81, 80, 78, 82];
+
+var ctx = document.getElementById("studentChart").getContext("2d");
+var studentChart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: ["Previous", "Current"],
+    datasets: []
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Previous and Current Marks Comparison"
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          max: 100
+        }
+      }]
+    }
+  }
+});
+
+// Function to update the student dropdown menu
+function updateStudentDropdown() {
+  var studentSelect = document.getElementById("studentName");
+  studentSelect.innerHTML = ""; // Clear existing options
+  studentNames.forEach(function(student) {
+    var option = document.createElement("option");
+    option.value = student;
+    option.textContent = student;
+    studentSelect.appendChild(option);
+  });
+}
+
+// Function to update the chart with the selected student's marks
+function updateChart() {
+  var studentName = document.getElementById("studentName").value;
+  var studentIndex = studentNames.indexOf(studentName);
+
+  if (studentIndex === -1) {
+    alert("Student not found.");
+    return;
+  }
+
+  var previousMarks = [marksMath[studentIndex], marksEnglish[studentIndex], marksScience[studentIndex], marksHistory[studentIndex]];
+  var currentMarks = [0, 0, 0, 0];
+
+  var datasets = [
+    {
+      label: "Previous",
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      data: previousMarks
+    },
+    {
+      label: "Current",
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      data: currentMarks
+    }
+  ];
+
+  studentChart.data.datasets = datasets;
+  studentChart.update();
+}
+
+// Event listener for form submission
+document.getElementById("marksForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var studentName = document.getElementById("studentName").value;
+  var subject = document.getElementById("subject").value;
+  var marks = parseInt(document.getElementById("marks").value);
+
+  if(studentName && !isNaN(marks)) {
+    var studentIndex = studentNames.indexOf(studentName);
+    if(studentIndex === -1) {
+      alert("Student not found.");
+      return;
+    }
+
+    switch(subject) {
+      case 'Math':
+        marksMath[studentIndex] = marks;
+        break;
+      case 'English':
+        marksEnglish[studentIndex] = marks;
+        break;
+      case 'Science':
+        marksScience[studentIndex] = marks;
+        break;
+      case 'History':
+        marksHistory[studentIndex] = marks;
+        break;
+    }
+
+    updateChart();
+  } else {
+    alert("Please fill out all fields with valid numbers.");
+  }
+});
+
+// Initial setup
+updateStudentDropdown();
+updateChart(); // Update chart with initial data
+</script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+
+<canvas id="studentChart" style="width:100%;max-width:600px"></canvas>
+
+<form id="marksForm">
+  <label for="studentName">Student Name:</label><br>
+  <input type="text" id="studentName" name="studentName"><br>
+  <label for="subject">Subject:</label><br>
+  <select id="subject" name="subject">
+    <option value="Math">Math</option>
+    <option value="English">English</option>
+    <option value="Science">Science</option>
+    <option value="History">History</option>
+  </select><br>
+  <label for="marks">Marks:</label><br>
+  <input type="number" id="marks" name="marks"><br>
+  <input type="submit" value="Add Marks">
+</form>
+
+<script>
+var studentNames = ["Alice", "Bob", "Charlie", "David", "Eva","Ruby"];
+var marksMath = [85, 92, 78, 88, 90,56];
+var marksEnglish = [78, 85, 89, 84, 76 ,80];
+var marksScience = [92, 87, 85, 91, 88, 78];
+var marksHistory = [74, 81, 80, 78, 82,60];
+
+var ctx = document.getElementById("studentChart").getContext("2d");
+var studentChart = new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: studentNames,
+    datasets: [
+      {
+        label: "Math",
+        backgroundColor: "red",
+        data: marksMath
+      },
+      {
+        label: "English",
+        backgroundColor: "green",
+        data: marksEnglish
+      },
+      {
+        label: "Science",
+        backgroundColor: "blue",
+        data: marksScience
+      },
+      {
+        label: "History",
+        backgroundColor: "orange",
+        data: marksHistory
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Students' Marks in Different Subjects"
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          max: 100
+        }
+      }]
+    }
+  }
+});
+
+document.getElementById("marksForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var studentName = document.getElementById("studentName").value;
+  var subject = document.getElementById("subject").value;
+  var marks = parseInt(document.getElementById("marks").value);
+
+  if(studentName && !isNaN(marks)) {
+    var studentIndex = studentNames.indexOf(studentName);
+    if(studentIndex === -1) {
+      // If the student doesn't exist, add the student and the marks for the selected subject
+      studentNames.push(studentName);
+      marksMath.push(subject === "Math" ? marks : 0);
+      marksEnglish.push(subject === "English" ? marks : 0);
+      marksScience.push(subject === "Science" ? marks : 0);
+      marksHistory.push(subject === "History" ? marks : 0);
+    } else {
+      // If the student exists, update the marks for the selected subject
+      if(subject === "Math") marksMath[studentIndex] = marks;
+      if(subject === "English") marksEnglish[studentIndex] = marks;
+      if(subject === "Science") marksScience[studentIndex] = marks;
+      if(subject === "History") marksHistory[studentIndex] = marks;
+    }
+
+    studentChart.update();
+  } else {
+    alert("Please fill out all fields with valid numbers.");
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <style media="screen">    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1b262c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      margin-top: 50px;
+      background-color: rgb(55, 121, 55);
+      color: white;
+      padding: 10px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      background: #141415;
+      border-radius: 0px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .box h3 {
+      color: #4caf50;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .box input[type="text"],
+    .box input[type="password"] {
+      border: 0;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      border: 2px solid #4caf50;
+      padding: 10px 15px;
+      width: calc(100% - 30px);
+      outline: none;
+      color: white;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+      width: calc(100% - 40px);
+      border-color: #45a049;
+    }
+
+    .box input[type="submit"] {
+      border: 0;
+      background: #4caf50;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      padding: 12px 40px;
+      outline: none;
+      color: white;
+      border-radius: 5px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .box input[type="submit"]:hover {
+      background: #45a049;
+    }
+
+    .footer {
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .container {
+        padding: 10px; 
+      }
+
+      .box {
+        padding: 20px;
+        width: 100%;
+      }
+
+      .box input[type="text"],
+      .box input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+      }
+
+      .box input[type="submit"] {
+        padding: 10px 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  {% include "exam/navbar.html" %}
+  <br><br>
+
+  <main class="container">
+    <div class="box">
+      <h3 class='alert alert-success'>Please fill up the form in order to contact us</h3>
+
+      <form method="POST" autocomplete="off">
+        <!-- Very Important csrf Token -->
+        {% csrf_token %}
+        <div class="form-group">
+          <h3>{{ form.as_p }}</h3>
+          <br>
+          <input type="submit" value="Submit" class='btn btn-primary' style="border-radius: 0%;">
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    {% include "exam/footer.html" %}
+  </footer>
+
+</body>
+
+</html>

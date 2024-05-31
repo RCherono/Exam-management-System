@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+
+<canvas id="subjectChart" style="width:100%;max-width:600px"></canvas>
+
+<form id="marksForm">
+  <label for="studentName">Student Name:</label><br>
+  <input type="text" id="studentName" name="studentName"><br>
+  <label for="subject">Subject:</label><br>
+  <select id="subject" name="subject">
+    <option value="Math">Math</option>
+    <option value="English">English</option>
+    <option value="Science">Science</option>
+    <option value="History">History</option>
+  </select><br>
+  <label for="marks">Marks:</label><br>
+  <input type="number" id="marks" name="marks"><br>
+  <input type="submit" value="Add Marks">
+</form>
+
+<script>
+var subjectLabels = ["Math", "English", "Science", "History"];
+var combinedMarks = [0, 0, 0, 0]; // Initialize combined marks for each subject to zero
+var subjectColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9"];
+
+var ctx = document.getElementById("subjectChart").getContext("2d");
+var subjectChart = new Chart(ctx, {
+  type: "pie",
+  data: {
+    labels: subjectLabels,
+    datasets: [{
+      backgroundColor: subjectColors,
+      data: combinedMarks
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Combined Student Marks by Subject"
+    }
+  }
+});
+
+document.getElementById("marksForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var studentName = document.getElementById("studentName").value;
+  var subject = document.getElementById("subject").value;
+  var marks = parseInt(document.getElementById("marks").value);
+
+  if(studentName && !isNaN(marks)) {
+    var subjectIndex = subjectLabels.indexOf(subject);
+    if(subjectIndex !== -1) {
+      // Update the combined marks for the selected subject
+      combinedMarks[subjectIndex] += marks;
+      subjectChart.update();
+    } else {
+      alert("Invalid subject selected.");
+    }
+  } else {
+    alert("Please fill out all fields with valid numbers.");
+  }
+});
+</script>
+
+</body>
+</html>

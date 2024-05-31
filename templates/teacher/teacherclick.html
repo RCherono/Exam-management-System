@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Welcome to Online Examination System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style media="screen">
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .jumbotron {
+      background-image: url("{% static 'image/student2.jpeg' %}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      color: rgb(18, 18, 18);
+      font-weight: bold;
+      text-align: center;
+      padding: 100px 0;
+      margin-bottom: 0;
+      height: 100vh; /* Adjusted to full viewport height */
+    }
+    .jumbotron h1 {
+      font-size: 4.5rem;
+      font-weight: bold;
+      margin-top: 180px;
+      color: white;
+    }
+    .jumbotron p {
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+    }
+    .btn {
+      border-radius: 0;
+    }
+    footer {
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      padding: 20px 0;
+    }
+    .container {
+      padding: 0 15px;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "exam/navbar.html" %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Hello Teacher,</h1>
+      <p class="lead"> Welcome to Online Examination System</p>
+      <hr class="my-4">
+      <p>Kindly proceed by selecting any of them to access into the system</p>
+      <p class="lead">
+        <a class="btn btn-primary" href="{% url 'teachersignup' %}" role="button">Create Your Account</a>
+        <a class="btn btn-success" href="{% url 'teacherlogin' %}" role="button">Login Now</a>
+      </p>
+    </div>
+  </div>
+  {% include "exam/footer.html" %}
+</body>
+
+</html>

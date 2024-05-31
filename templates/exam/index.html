@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .jumbotron {
+      margin-bottom: 0px;
+      background-image: url({% static 'image/keyboard.jpeg' %});
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    footer {
+      padding: 0;
+      background-color: #212529;
+      margin: 0;
+      width: 100%;
+    }
+
+    .fa {
+      padding: 20px;
+      font-size: 23px;
+      width: 60px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+      border-radius: 50%;
+      font-weight: bold; 
+
+    }
+
+    .fa:hover {
+      opacity: 0.5;
+      text-decoration: none;
+    }
+
+    p {
+      text-align: center;
+      margin: 0;
+      padding: 10px 0;
+      color: #0a0a0a;
+    }
+  </style>
+</head>
+
+<body>
+  {% include "exam/navbar.html" %}
+
+  <section id="section-jumbotron" class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center content">
+    <div class="container text-center">
+      <h2 class="display-3 text-info">EMS</h2>
+      <p class="display-4 d-none d-sm-block">Attend your examinations online!</p>
+      <p class="lead">Sign Up now to start your first online examination</p>
+      <p><strong> Start Your Journey Here:</strong></p>
+      <a href="/student/studentsignup" class="btn btn-lg btn-info" style="padding-right: 35px; border-radius: 0%;"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Sign Up as Student</a>
+      <br><br><br>
+    </div>
+  </section>
+
+  <footer>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div style="color:#f6f2f2;" class="wow fadeInUp footer-copyright">
+            <p>Copyright &copy; Cherono Examination System 2024</p><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
