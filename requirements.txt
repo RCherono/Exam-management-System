@@ -5,4 +5,4 @@ pytz==2020.1
 sqlparse==0.3.1
 Pillow
 setuptools
-psycopg2==<version>
+psycopg2-binary

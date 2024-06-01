@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=onlinexam # Passed from Python Settings
+      - POSTGRES_USER=postgres # default
+      - POSTGRES_PASSWORD=password # default
+    ports:
+      - "5432:5432"
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
