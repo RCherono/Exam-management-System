@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <title>School Calendar</title>
@@ -17,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="./evo-calendar/css/evo-calendar.midnight-blue.min.css">
     <link rel="stylesheet" type="text/css" href="./evo-calendar/css/evo-calendar.royal-navy.min.css">
 
-    <link rel="stylesheet" type="text/css" href="./demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="/templates/exam/evo-calendar-master/demo/demo.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -55,6 +56,16 @@
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="./evo-calendar/js/evo-calendar.min.js"></script>
-    <script src="./demo/demo.js"></script>
+    <script src="/templates/exam/evo-calendar-master/demo/demo.js"></script>
+    {% block content %}
+
+    {% endblock content %}
+
+
+    <br><br><br>
+    {% include "exam/footer.html" %}
+  </div>
+  <!--content end-->
+
 </body>
 </html>

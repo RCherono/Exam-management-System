@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
+       body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;;
+      background-image: url(/static/image/studentbg.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
       a:link {
         text-decoration: none;
       }
@@ -102,6 +110,16 @@
           </div>
         </div>
       </div>
+
+       <div class="col-md-4 col-xl-4">
+        <div class="card bg-c-blue order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">Total Questions</h6>
+            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
+            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -112,3 +130,10 @@
 
 
 {% endblock content %}
+<br><br><br>
+{% include "exam/footer.html" %}
+</div>
+<!--content end-->
+</body>
+
+</html>

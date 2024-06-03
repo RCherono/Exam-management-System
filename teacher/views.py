@@ -122,3 +122,30 @@ def remove_question_view(request,pk):
     question=QMODEL.Question.objects.get(id=pk)
     question.delete()
     return HttpResponseRedirect('/teacher/teacher-view-question')
+
+from django.shortcuts import render
+from datetime import datetime
+
+def add_event_view(request):
+    events = [
+        {
+            'title': 'CAT 1',
+            'start': '2024-06-01T10:00:00',
+            'end': '2024-06-01T12:00:00'
+        },
+        {
+            'title': 'Main Exam',
+            'start': '2024-06-03T14:00:00',
+            'end': '2024-06-03T16:00:00'
+        }
+        # Add more events as needed
+    ]
+
+    today = datetime.now().date()
+
+    context = {
+        'events': events,
+        'today': today
+    }
+
+    return render(request, 'teacher/Calenda/add_event.html', context)

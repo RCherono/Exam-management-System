@@ -10,4 +10,8 @@ docker-compose up
 
 ```
 localhost:8000
+
 ```
+## To create a super user run
+
+docker-compose run web python manage.py createsuperuser

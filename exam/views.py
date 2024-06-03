@@ -110,21 +110,20 @@ def admin_view_pending_teacher_view(request):
     teachers= TMODEL.Teacher.objects.all().filter(status=False)
     return render(request,'exam/admin_view_pending_teacher.html',{'teachers':teachers})
 
-
 @login_required(login_url='adminlogin')
-def approve_teacher_view(request,pk):
-    teacherSalary=forms.TeacherSalaryForm()
-    if request.method=='POST':
-        teacherSalary=forms.TeacherSalaryForm(request.POST)
+def approve_teacher_view(request, pk):
+    if request.method == 'POST':
+        teacherSalary = forms.TeacherSalaryForm(request.POST)
         if teacherSalary.is_valid():
-            teacher=TMODEL.Teacher.objects.get(id=pk)
-            teacher.salary=teacherSalary.cleaned_data['salary']
-            teacher.status=True
+            teacher = TMODEL.Teacher.objects.get(id=pk)
+            teacher.salary = teacherSalary.cleaned_data['salary']
+            teacher.status = True
             teacher.save()
-        else:
-            print("form is invalid")
-        return HttpResponseRedirect('/admin-view-pending-teacher')
-    return render(request,'exam/salary_form.html',{'teacherSalary':teacherSalary})
+            return HttpResponseRedirect('/admin-view-pending-teacher')
+    else:
+        teacherSalary = forms.TeacherSalaryForm()
+
+    return render(request, 'exam/salary_form.html', {'teacherSalary': teacherSalary})
 
 @login_required(login_url='adminlogin')
 def reject_teacher_view(request,pk):

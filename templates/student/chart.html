@@ -12,10 +12,10 @@
   <input type="text" id="studentName" name="studentName"><br>
   <label for="subject">Subject:</label><br>
   <select id="subject" name="subject">
-    <option value="Math">Math</option>
-    <option value="English">English</option>
-    <option value="Science">Science</option>
-    <option value="History">History</option>
+    <option value="MicrosoftOfficeSpecialist">Microsoft Office Specialist</option>
+    <option value="FullStackDevelopement">Full Satck Developement</option>
+    <option value="CyberSecurity">Cyber Security</option>
+    <option value="DataAnalytics">Data analytics</option>
   </select><br>
   <label for="marks">Marks:</label><br>
   <input type="number" id="marks" name="marks"><br>
@@ -24,10 +24,10 @@
 
 <script>
 var studentNames = ["Alice", "Bob", "Charlie", "David", "Eva","Ruby"];
-var marksMath = [85, 92, 78, 88, 90,56];
-var marksEnglish = [78, 85, 89, 84, 76 ,80];
-var marksScience = [92, 87, 85, 91, 88, 78];
-var marksHistory = [74, 81, 80, 78, 82,60];
+var marksMicrosoftOfficeSpecialist = [85, 92, 78, 88, 90,56];
+var marksFullStackDevelopement = [78, 85, 89, 84, 76 ,80];
+var marksCyberSecurity = [92, 87, 85, 91, 88, 78];
+var marksDataAnalytics = [74, 81, 80, 78, 82,60];
 
 var ctx = document.getElementById("studentChart").getContext("2d");
 var studentChart = new Chart(ctx, {
@@ -36,24 +36,24 @@ var studentChart = new Chart(ctx, {
     labels: studentNames,
     datasets: [
       {
-        label: "Math",
+        label: "MicrosoftOfficeSpecialist",
         backgroundColor: "red",
-        data: marksMath
+        data: marksMicrosoftOfficeSpecialist
       },
       {
-        label: "English",
+        label: "FullStackDevelopement",
         backgroundColor: "green",
-        data: marksEnglish
+        data: marksFullStackDevelopement
       },
       {
-        label: "Science",
+        label: "CyberSecurity",
         backgroundColor: "blue",
-        data: marksScience
+        data: marksCyberSecurity
       },
       {
-        label: "History",
+        label: "DataAnalytics",
         backgroundColor: "orange",
-        data: marksHistory
+        data: marksDataAnalytics
       }
     ]
   },
@@ -85,16 +85,16 @@ document.getElementById("marksForm").addEventListener("submit", function(event) 
     if(studentIndex === -1) {
       // If the student doesn't exist, add the student and the marks for the selected subject
       studentNames.push(studentName);
-      marksMath.push(subject === "Math" ? marks : 0);
-      marksEnglish.push(subject === "English" ? marks : 0);
-      marksScience.push(subject === "Science" ? marks : 0);
-      marksHistory.push(subject === "History" ? marks : 0);
+      marksMicrosoftOfficeSpecialist.push(subject === "MicrosoftOfficeSpecialist" ? marks : 0);
+      marksFullStackDevelopement.push(subject === "FullStackDevelopement" ? marks : 0);
+      marksCyberSecurity.push(subject === "CyberSecurity" ? marks : 0);
+      marksDataAnalytics.push(subject === "DataAnalytics" ? marks : 0);
     } else {
       // If the student exists, update the marks for the selected subject
-      if(subject === "Math") marksMath[studentIndex] = marks;
-      if(subject === "English") marksEnglish[studentIndex] = marks;
-      if(subject === "Science") marksScience[studentIndex] = marks;
-      if(subject === "History") marksHistory[studentIndex] = marks;
+      if(subject === "MicrosoftOfficeSpecialist") marksMicrosoftOfficeSpecialist[studentIndex] = marks;
+      if(subject === "FullStackDevelopement") marksFullStackDevelopement[studentIndex] = marks;
+      if(subject === "CyberSecurity") marksCyberSecurity[studentIndex] = marks;
+      if(subject === "DataAnalytics") marksDataAnalytics[studentIndex] = marks;
     }
 
     studentChart.update();

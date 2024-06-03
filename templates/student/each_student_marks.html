@@ -14,10 +14,10 @@
   </select><br>
   <label for="subject">Subject:</label><br>
   <select id="subject" name="subject">
-    <option value="Math">Math</option>
-    <option value="English">English</option>
-    <option value="Science">Science</option>
-    <option value="History">History</option>
+    <option value="MicrosoftOfficeSpecialist">Microsoft Office Specialist</option>
+    <option value="FullStackDevelopement">Full Stack Developement</option>
+    <option value="CyberSecurity">Cyber Security</option>
+    <option value="DataAnalytics">Data Analytics</option>
   </select><br>
   <label for="marks">Marks:</label><br>
   <input type="number" id="marks" name="marks"><br>
@@ -26,10 +26,10 @@
 
 <script>
 var studentNames = ["Alice", "Bob", "Charlie", "David", "Eva", "Ruby"];
-var marksMath = [85, 92, 78, 88, 90];
-var marksEnglish = [78, 85, 89, 84, 76];
-var marksScience = [92, 87, 85, 91, 88];
-var marksHistory = [74, 81, 80, 78, 82];
+var marksMicrosoftOfficeSpecialist = [85, 92, 78, 88, 90];
+var marksFullStackDevelopement = [78, 85, 89, 84, 76];
+var marksCyberSecurity = [92, 87, 85, 91, 88];
+var marksDataAnalytics = [74, 81, 80, 78, 82];
 
 var ctx = document.getElementById("studentChart").getContext("2d");
 var studentChart = new Chart(ctx, {
@@ -76,7 +76,7 @@ function updateChart() {
     return;
   }
 
-  var previousMarks = [marksMath[studentIndex], marksEnglish[studentIndex], marksScience[studentIndex], marksHistory[studentIndex]];
+  var previousMarks = [marksMicrosoftOfficeSpecialist[studentIndex], marksFullStackDevelopement[studentIndex], marksCyberSecurity[studentIndex], marksDataAnalytics[studentIndex]];
   var currentMarks = [0, 0, 0, 0];
 
   var datasets = [
@@ -112,17 +112,17 @@ document.getElementById("marksForm").addEventListener("submit", function(event) 
     }
 
     switch(subject) {
-      case 'Math':
-        marksMath[studentIndex] = marks;
+      case 'MicrosoftOfficeSpecialist':
+        marksMicrosoftOfficeSpecialist[studentIndex] = marks;
         break;
-      case 'English':
-        marksEnglish[studentIndex] = marks;
+      case 'FullStackDevelopement':
+        marksFullStackDevelopement[studentIndex] = marks;
         break;
-      case 'Science':
-        marksScience[studentIndex] = marks;
+      case 'CyberSecurity':
+        marksCyberSecurity[studentIndex] = marks;
         break;
-      case 'History':
-        marksHistory[studentIndex] = marks;
+      case 'DataAnalytics':
+        marksDataAnalytics[studentIndex] = marks;
         break;
     }
 

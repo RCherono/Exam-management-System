@@ -15,6 +15,9 @@
       margin: 0;
       padding: 0;
       font-family: "Gill Sans", sans-serif;;
+      background-image: url(/static/image/studentbg.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     header {
@@ -185,6 +188,7 @@
     <a href="/teacher/teacher-dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
     <a href="/teacher/teacher-exam"><i class="fas fa-book"></i><span>Manage Courses</span></a>
     <a href="/teacher/teacher-question"><i class="fas fa-question-circle"></i><span>Manage Questions</span></a>
+    <a href="{% url 'add-event' %}"><i class="fas fa-question-circle"></i><span>Add Event</span></a>
   </div>
   <!--sidebar end-->
 
